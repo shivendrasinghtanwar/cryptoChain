@@ -10,6 +10,10 @@ class Block{
 		this.data = data;
 	}
 
+	minBlock(){
+		
+	}
+
 	static genesis(){
 		return new this(GENESIS_DATA);
 	}

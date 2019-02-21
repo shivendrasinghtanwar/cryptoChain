@@ -29,4 +29,14 @@ describe('Block', () => {
             expect(genesisBlock).toEqual(GENESIS_DATA);
         });
     });
+
+    describe('mineBlock()', ()=>{
+        const lastBlock = Block.genesis();
+        const data = 'Mined Data';
+        const minedBlock = Block.mineBlock({ lastBlock, data});
+
+        it('Returns a Block isntance', ()=>{
+            expect(minedBlock instanceof Block).toBe(true);
+        });
+    });
 });
