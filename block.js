@@ -1,5 +1,7 @@
 class Block{
-	constructor(timestamp,lastHash,hash,data){
+
+	//Curly braces on arguments so that no specific order is set for the arguments
+	constructor({timestamp,lastHash,hash,data}){
 		this.timestamp = timestamp;
 		this.lastHash = lastHash;
 		this.hash = hash;
@@ -7,6 +9,13 @@ class Block{
 	}
 }
 
-const blk1 = new Block('01/01/01','lorem','ipsum','data');
+/*const blk1 = new Block({
+	timestamp:'01/01/01',
+	lastHash:'lorem',
+	hash:'ipsum',
+	data:'data'
+	);
 
-console.log(blk1); 
+console.log(blk1); */
+
+module.exports = Block;
