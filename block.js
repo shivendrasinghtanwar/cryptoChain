@@ -1,3 +1,5 @@
+const {GENESIS_DATA} = require('./config');
+
 class Block{
 
 	//Curly braces on arguments so that no specific order is set for the arguments
@@ -6,6 +8,10 @@ class Block{
 		this.lastHash = lastHash;
 		this.hash = hash;
 		this.data = data;
+	}
+
+	static genesis(){
+		return new this(GENESIS_DATA);
 	}
 }
 
