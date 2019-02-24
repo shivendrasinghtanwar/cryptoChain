@@ -3,10 +3,11 @@ const Block = require('../src/block');
 
 
 describe('Blockchain()',()=>{
-    var blockchain;
+    let blockchain,newChain;
 
     beforeEach(()=>{
         blockchain = new Blockchain();
+        newChain = new Blockchain();
     });
 
     it('Contains a chain array',()=>{
@@ -67,6 +68,28 @@ describe('Blockchain()',()=>{
                 it('Reurns true',()=>{
 
                     expect(Blockchain.isValidChain(blockchain.chain)).toBe(true);
+                });
+            });
+        });
+    });
+
+    describe('replaceChain()',()=>{
+        describe('When the new chain is not longer',()=>{
+            it('Does not replace the chain',()=>{
+                blockchain.replaceChain(newChain.chain);
+            });
+        });
+
+        describe('When the new chain is longer',()=>{
+            describe('When the chain is invalid',()=>{
+                it('Does not replace the chain',()=>{
+
+                });
+            });
+
+            describe('and the chain is valid',()=>{
+                it('Replaces the chain',()=>{
+
                 });
             });
         });
