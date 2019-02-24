@@ -1,6 +1,6 @@
-const Block = require('./block');
-const cryptoHash = require('./cryptoHash');
-const {GENESIS_DATA} = require('./config');
+const Block = require('../src/block');
+const cryptoHash = require('../src/cryptoHash');
+const {GENESIS_DATA} = require('../config');
 
 describe('Block', () => {
     const timestamp = 'a-date';

@@ -1,4 +1,4 @@
-const {GENESIS_DATA} = require('./config');
+const {GENESIS_DATA} = require('../config');
 const cryptoHash = require('./cryptoHash');
 
 class Block{
@@ -23,10 +23,6 @@ class Block{
 
 	static genesis(){
 		return new this(GENESIS_DATA);
-	}
-
-	static cryptoHash(){
-
 	}
 }
 
