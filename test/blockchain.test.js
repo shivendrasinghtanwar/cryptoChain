@@ -1,6 +1,6 @@
 const Blockchain = require('../src/blockchain');
 const Block = require('../src/block');
-
+const cryptoHash = require('../src/cryptoHash');
 
 describe('Blockchain()',()=>{
     let blockchain,newChain,originChain;
@@ -38,7 +38,7 @@ describe('Blockchain()',()=>{
             });
         });
 
-        describe('when the chain starts with the ggensis block and has multiple blocks',()=>{
+        describe('when the chain starts with the gensis block and has multiple blocks',()=>{
 
             beforeEach(()=>{
                 blockchain.addBlock({data:'beats'});
@@ -70,6 +70,27 @@ describe('Blockchain()',()=>{
                 it('Reurns true',()=>{
 
                     expect(Blockchain.isValidChain(blockchain.chain)).toBe(true);
+                });
+            });
+
+            describe('and the chain has a block with jumpe ddificulty',()=>{
+                it('returns false',()=>{
+                    const lastBlock = blockchain.chain[blockchain.chain.length - 1 ];
+                    const lastHash = lastBlock.hash;
+                    const timestamp = Date.now();
+                    const nonce = 0;
+                    const data = [];
+                    const difficulty = lastBlock.difficulty - 3;
+
+                    const hash = cryptoHash(timestamp,lastHash,difficulty,nonce,data);
+
+                    const badBlock = new Block({
+                        timestamp,lastHash,difficulty,nonce,data
+                    });
+
+                    blockchain.chain.push(badBlock);
+
+                    expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
                 });
             });
         });
