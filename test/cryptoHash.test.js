@@ -1,4 +1,4 @@
-const cryptoHash = require('../src/cryptoHash');
+const cryptoHash = require('../src/util/cryptoHash');
 
 describe('cryptoHash()',()=>{
     const testInput = "sunny";
