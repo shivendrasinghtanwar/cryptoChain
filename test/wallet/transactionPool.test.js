@@ -1,6 +1,7 @@
 const TransactionPool = require('../../src/wallet/transactionPool');
 const Transaction = require('../../src/wallet/transaction');
 const Wallet = require('../../src/wallet/index');
+const Blockchain = require('../../src/blockchain/blockchain');
 
 describe('TransactionPool()',()=>{
     let transactionPool, transaction,senderWallet;
@@ -64,6 +65,42 @@ describe('TransactionPool()',()=>{
 
         it('returns valid transactions',()=>{
             expect(transactionPool.validTransactions()).toEqual(validTransactions);
+        });
+
+        it('logs errors for invalid transactions',()=>{
+            transactionPool.validTransactions();
+            expect(errorMock).toHaveBeenCalled();
+        });
+    });
+
+    describe('clear()',()=>{
+        it('clears the transactions',()=>{
+            transactionPool.clear();
+            expect(transactionPool.transactionMap).toEqual({});
+        });
+    });
+
+    describe('clearBlockchainTransactions()',()=>{
+        it('clears the pool of existing blockchain transactions',()=>{
+            const blockchain = new Blockchain();
+            const expectTransctionMap = {};
+            for(let i=0;i<6;i++){
+                const transaction = new Wallet().createTransaction({
+                    recepient:'testClearTransactions',amount:20
+                });
+
+                transactionPool.setTransaction(transaction);
+
+                if(i%2==0){
+                    blockchain.addBlock({data:[transaction]});
+                }else{
+                    expectTransctionMap[transaction.id] = transaction;
+                }
+            }
+
+            transactionPool.clearBlockchainTransactions({chain:blockchain.chain});
+
+            expect(transactionPool.transactionMap).toEqual(expectTransctionMap);
         });
     });
 });
