@@ -163,9 +163,9 @@ describe('Wallet',()=>{
                     beforeEach(()=>{
                         recentTransaction = wallet.createTransaction({
                             recepient: 'testLaterFoo',
-                            recepient: 60
+                            amount: 60
                         });
-
+                        
                         sameBlockTransaction = Transaction.rewardTransaction({minerWallet:wallet});
 
                         blockchain.addBlock({data:[recentTransaction,sameBlockTransaction]});
@@ -176,7 +176,10 @@ describe('Wallet',()=>{
                         });
 
                         blockchain.addBlock({data: [nextBlockTransaction]});
+
+                        
                     });
+                    
 
                     it('includes the output amounts in the returned balance',()=>{
                         expect(
@@ -189,6 +192,7 @@ describe('Wallet',()=>{
                             sameBlockTransaction.outputMap[wallet.publicKey] + 
                             nextBlockTransaction.outputMap[wallet.publicKey]
                         );
+                        
                     });
                 });
             });

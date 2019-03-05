@@ -20,6 +20,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
 app.use(bodyParser.json());
 
+//API-EndPOINTS
 app.get('/api/blocks',(req,res) =>{
     res.json(blockchain.chain);
 });
@@ -59,11 +60,22 @@ app.get('/api/transactionPoolMap',(req,res)=>{
     // const {} = ;
     res.json(transactionPool);
 });
-
+   
 app.get('/api/mineTransactions',(req,res)=>{
     transactionMiner.mineTransactions();
     res.redirect('/api/blocks');
 });
+
+app.get('/api/wallet/info',(req,res)=>{
+    res.json({
+        address: wallet.publicKey,
+        balance: Wallet.calculateBalance({ chain: blockchain, address: wallet.publicKey})
+    });
+});
+
+
+
+
 
 //Functions
 const syncWithRootState = ( ) => {
