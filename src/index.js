@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const Blockchain = require('./blockchain/blockchain');
 const bodyParser = require('body-parser');
 const PubSub = require('./app/pubsub');
@@ -19,6 +20,8 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 // setTimeout(() => pubsub.broadcastChain(),1000);
 
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname,'client/dist')));
 
 //API-EndPOINTS
 app.get('/api/blocks',(req,res) =>{
@@ -73,6 +76,10 @@ app.get('/api/wallet/info',(req,res)=>{
     });
 });
 
+//Frontend Routes
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client/src/index.html'));
+});
 
 
 
