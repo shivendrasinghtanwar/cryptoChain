@@ -9,7 +9,7 @@
     "dev": "npm run start-redis && nodemon src/index.js",
     "dev-peer": "cross-env GENERATE_PEER_PORT='true' nodemon src/index.js",
     "start-redis": "redis-server --daemonize yes",
-    "build-client": "parcel build ./src/client/src/index.html --out-dir client/dist"
+    "build-client": "parcel build ./src/client/src/index.html --out-dir ./src/client/dist"
   },
   "jest": {
     "testEnvironment": "node"
