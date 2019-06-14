@@ -1,7 +1,11 @@
 {
-    "name": "udemycrypto",
+    "name": "cryptoChain",
     "version": "1.0.0",
-    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "git:shivendrasinghtanwar/cryptoChain.git"
+    },
+    "description": "Blockchain Implementation in Node Js",
     "main": "index.js",
     "scripts": {
         "test": "jest --watchAll",
