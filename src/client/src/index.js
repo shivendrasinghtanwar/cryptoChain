@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import App from './components/App';
 
 render( 
-    <div> cryotoChain in react:: Live asd update!! </div>, 
+    <App></App>, 
     document.getElementById('root')
 );
