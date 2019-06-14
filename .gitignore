@@ -1,5 +1,3 @@
-node_modules/*
-/.cache
+node_modules
 .cache
-.cache/
-client
+src/client/dist
