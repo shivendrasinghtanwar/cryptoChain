@@ -38,7 +38,7 @@
         "hex-to-binary": "^1.0.1",
         "nodemon": "^1.18.10",
         "parcel-bundler": "^1.12.3",
-        "pubnub": "^4.21.7",
+        "pubnub": "^4.37.0",
         "react": "^16.8.4",
         "react-bootstrap": "^1.0.0-beta.9",
         "react-dom": "^16.8.4",
